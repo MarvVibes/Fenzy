@@ -348,6 +348,56 @@ button {
   max-width: 530px;
 }
 
+/* Hero Live Badge */
+.hero-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08);
+}
+
+.live-pulse-beacon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16A34A;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  animation: pulseBeacon 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulseBeacon {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+.live-badge-text {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #15803D;
+  letter-spacing: -0.01em;
+}
+
+.live-badge-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: #DCFCE7;
+  color: #16A34A;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
 .hero-clean-title {
   font-family: var(--font-heading);
   font-size: clamp(2.9rem, 4.3vw, 3.85rem);
@@ -358,11 +408,73 @@ button {
   margin-bottom: 22px;
 }
 
+.title-block-line {
+  display: block;
+}
+
 .hero-clean-title .title-invest,
-.hero-clean-title .title-intelligently,
-.hero-clean-title .title-live,
-.hero-clean-title .title-independently {
+.hero-clean-title .title-live {
   display: inline;
+}
+
+/* Kinetic Animated Rotating Keyword */
+.hero-rotator-wrap {
+  display: inline-flex;
+  position: relative;
+  vertical-align: baseline;
+  overflow: hidden;
+  height: 1.15em;
+  min-width: 5.4ch;
+  line-height: 1.08;
+}
+
+.hero-rotator-text {
+  display: inline-block;
+  background: linear-gradient(135deg, #059669 0%, #10B981 40%, #16A34A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(100%) scale(0.92);
+  filter: blur(4px);
+  transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-rotator-text.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  position: relative;
+}
+
+.hero-rotator-text.exit {
+  opacity: 0;
+  transform: translateY(-80%) scale(0.92);
+  filter: blur(4px);
+}
+
+/* Live Subtle Shimmer on "Independently" */
+.title-independently.text-shimmer-live {
+  display: inline-block;
+  background: linear-gradient(115deg, #111827 0%, #111827 35%, #10B981 50%, #111827 65%, #111827 100%);
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmerSweep 5s ease-in-out infinite;
+}
+
+@keyframes textShimmerSweep {
+  0% {
+    background-position: 100% 0;
+  }
+  40%, 100% {
+    background-position: -100% 0;
+  }
 }
 
 .hero-clean-title .desktop-br {
@@ -399,6 +511,60 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Ambient Glow Motion Graphic behind Phone */
+.hero-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 440px;
+  height: 560px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.18) 0%, rgba(16, 185, 129, 0.1) 45%, rgba(6, 182, 212, 0.04) 65%, transparent 80%);
+  filter: blur(55px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  animation: ambientAuraPulse 7s ease-in-out infinite alternate;
+}
+
+.hero-glow-particles {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 300px;
+  height: 380px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.22) 0%, rgba(34, 197, 94, 0.08) 50%, transparent 75%);
+  filter: blur(35px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  animation: ambientAuraDrift 10s ease-in-out infinite alternate;
+}
+
+@keyframes ambientAuraPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes ambientAuraDrift {
+  0% {
+    transform: translate(-48%, -52%) rotate(0deg);
+  }
+  50% {
+    transform: translate(-52%, -48%) rotate(8deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-6deg);
+  }
 }
 
 /* Upright Modern Smartphone Frame */
@@ -852,6 +1018,139 @@ button {
   gap: 32px;
   max-width: 900px;
   margin: 0 auto;
+}
+
+/* Live Fintech Telemetry Ticker */
+.fintech-live-ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 24px;
+  padding: 8px 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.fintech-live-ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: max-content;
+  animation: tickerMarquee 34s linear infinite;
+}
+
+.fintech-live-ticker-wrap:hover .fintech-live-ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  font-size: 0.8rem;
+  color: #374151;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+}
+
+.ticker-item strong {
+  color: #111827;
+  font-weight: 700;
+}
+
+.ticker-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.ticker-dot.green {
+  background: #16A34A;
+  box-shadow: 0 0 6px rgba(22, 163, 74, 0.6);
+  animation: pulseBeacon 1.8s infinite;
+}
+
+.ticker-icon {
+  font-size: 0.88rem;
+}
+
+@keyframes tickerMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Heading Motion Highlight & Live Pill */
+.live-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08);
+}
+
+.live-beacon {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #16A34A;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  animation: pulseBeacon 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+.live-pill-text {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #15803D;
+}
+
+.live-pill-chip {
+  font-size: 0.68rem;
+  font-weight: 800;
+  background: #DCFCE7;
+  color: #16A34A;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.heading-motion-highlight {
+  display: inline-block;
+  background: linear-gradient(120deg, #111827 0%, #16A34A 45%, #059669 55%, #111827 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: headingGlowSweep 6s ease-in-out infinite;
+  position: relative;
+}
+
+.heading-motion-highlight.banner-highlight {
+  background: linear-gradient(120deg, #FFFFFF 0%, #86EFAC 40%, #A7F3D0 60%, #FFFFFF 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes headingGlowSweep {
+  0% {
+    background-position: 100% 0;
+  }
+  45%, 100% {
+    background-position: -100% 0;
+  }
 }
 
 /* ==========================================================================
@@ -2629,7 +2928,13 @@ button {
   }
 
   .hero-clean-container {
-    padding: 0 16px;
+    padding: 0 22px;
+  }
+
+  .hero-live-badge {
+    margin: 0 auto 16px;
+    display: flex;
+    width: fit-content;
   }
 
   .hero-clean-title {
@@ -2641,21 +2946,23 @@ button {
     text-align: center;
   }
 
-  .hero-clean-title .desktop-br {
-    display: none;
+  .title-block-line {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 6px;
+    width: 100%;
   }
 
-  .hero-clean-title .title-invest {
-    display: block;
-  }
-
-  .hero-clean-title .title-intelligently {
-    display: block;
-  }
-
-  .hero-clean-title .title-live,
-  .hero-clean-title .title-independently {
+  .hero-clean-title .title-invest,
+  .hero-clean-title .title-live {
     display: inline;
+    margin-right: 0;
+  }
+
+  .hero-rotator-wrap {
+    display: inline-flex;
+    height: 1.15em;
   }
 
   .hero-clean-desc {
@@ -2700,15 +3007,27 @@ button {
   .phone-showcase-stage {
     position: relative;
     width: 100%;
-    max-width: 300px;
-    height: 505px;
-    margin: 0 auto;
+    max-width: 310px;
+    height: 520px;
+    margin: 0 auto 52px;
     overflow: visible;
   }
 
+  .hero-ambient-glow {
+    width: 310px;
+    height: 440px;
+    filter: blur(40px);
+  }
+
+  .hero-glow-particles {
+    width: 220px;
+    height: 280px;
+    filter: blur(28px);
+  }
+
   .iphone-frame {
-    width: 266px;
-    height: 495px;
+    width: 268px;
+    height: 485px;
     border-radius: 36px;
     padding: 7px;
     margin: 0 auto;
@@ -2719,11 +3038,23 @@ button {
     border-radius: 29px;
   }
 
+  .phone-app-body {
+    padding: 11px 14px 8px;
+  }
+
+  .app-activity-list {
+    gap: 6px;
+  }
+
+  .app-activity-item {
+    padding: 7px 9px;
+  }
+
   /* Floating Card 1: Elevated above screen bezel so Total Balance is 100% uncovered */
   .float-card-saves {
     position: absolute;
     top: -12px;
-    right: 2px;
+    right: 4px;
     padding: 8px 12px;
     border-radius: 13px;
     background: rgba(255, 255, 255, 0.98);
@@ -2753,19 +3084,34 @@ button {
     font-weight: 800;
   }
 
-  /* Floating Card 2: Positioned gently at bottom corner with balanced sizing */
+  /* Floating Card 2: Docks cleanly beneath phone screen, resting over the bottom black bezel only without obscuring transaction list */
   .float-card-split {
     position: absolute;
-    bottom: 6px;
-    left: -6px;
-    padding: 8px 11px;
-    gap: 10px;
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.14);
-    z-index: 15;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: floatSplitMobile 5.2s ease-in-out infinite;
+    animation-delay: 1.5s;
+    width: calc(100% - 14px);
+    max-width: 295px;
+    justify-content: space-around;
+    padding: 9px 12px;
+    gap: 12px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.16);
+    z-index: 25;
+  }
+
+  @keyframes floatSplitMobile {
+    0%, 100% {
+      transform: translate(-50%, 0);
+    }
+    50% {
+      transform: translate(-50%, -6px);
+    }
   }
 
   .split-icon {
@@ -3744,16 +4090,16 @@ button {
 
 @media (max-width: 480px) {
   .hero-clean-container,
-  .section-container {
-    padding: 0 14px;
-  }
-
-  .deep-dive-section .section-container {
-    padding: 0 24px;
+  .section-container,
+  .deep-dive-section .section-container,
+  .footer-container {
+    padding: 0 20px;
+    box-sizing: border-box;
+    max-width: 100%;
   }
 
   .nav-container {
-    padding: 0 14px;
+    padding: 0 16px;
   }
 
   .brand-name {
@@ -3802,13 +4148,26 @@ button {
   }
 
   .phone-showcase-stage {
-    max-width: 285px;
-    height: 480px;
+    max-width: 295px;
+    height: 495px;
+    margin: 0 auto 48px;
+  }
+
+  .hero-ambient-glow {
+    width: 280px;
+    height: 390px;
+    filter: blur(34px);
+  }
+
+  .hero-glow-particles {
+    width: 190px;
+    height: 240px;
+    filter: blur(24px);
   }
 
   .iphone-frame {
-    width: 250px;
-    height: 470px;
+    width: 256px;
+    height: 465px;
     border-radius: 34px;
     padding: 7px;
   }
@@ -3817,8 +4176,21 @@ button {
     border-radius: 27px;
   }
 
+  .phone-app-body {
+    padding: 10px 12px 6px;
+  }
+
+  .app-activity-list {
+    gap: 5px;
+  }
+
+  .app-activity-item {
+    padding: 6px 8px;
+    gap: 8px;
+  }
+
   .float-card-saves {
-    right: 2px;
+    right: 4px;
     top: -10px;
     padding: 7px 11px;
   }
@@ -3828,9 +4200,12 @@ button {
   }
 
   .float-card-split {
-    left: -4px;
-    bottom: 4px;
-    padding: 7px 9px;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 10px);
+    max-width: 285px;
+    padding: 8px 10px;
     gap: 8px;
   }
 
@@ -3853,11 +4228,15 @@ button {
   .bento-card {
     padding: 20px 16px;
     border-radius: 20px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .bento-preview-box {
     padding: 16px 14px;
     border-radius: 16px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .spending-amount-wrap .p-figure,
@@ -3886,8 +4265,10 @@ button {
   }
 
   .banner-card {
-    padding: 32px 15px;
+    padding: 32px 18px;
     border-radius: 20px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .banner-title {
@@ -3913,6 +4294,13 @@ button {
 }
 
 @media (max-width: 360px) {
+  .hero-clean-container,
+  .section-container,
+  .deep-dive-section .section-container,
+  .footer-container {
+    padding: 0 16px;
+  }
+
   .hero-clean-ctas {
     flex-direction: column;
     width: 100%;
@@ -3924,17 +4312,23 @@ button {
   }
 
   .phone-showcase-stage {
-    max-width: 260px;
-    height: 450px;
+    max-width: 268px;
+    height: 465px;
+    margin: 0 auto 30px;
+  }
+
+  .hero-ambient-glow {
+    width: 250px;
+    height: 350px;
   }
 
   .iphone-frame {
-    width: 232px;
+    width: 236px;
     height: 440px;
   }
 
   .float-card-saves {
-    right: 0px;
+    right: 2px;
     top: -8px;
     padding: 6px 9px;
   }
@@ -3944,8 +4338,10 @@ button {
   }
 
   .float-card-split {
-    left: -4px;
-    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -14px;
+    width: 96%;
     padding: 6px 8px;
     gap: 6px;
   }

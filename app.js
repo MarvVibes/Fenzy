@@ -7,8 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbarScroll();
   initMobileMenu();
   initHeroParallax();
+  initHeroHeadlineRotator();
+  initCardSpotlightHover();
   initAiPipelineSimulation();
   initCreditScoreCounter();
+  initCountersOnScroll();
 });
 
 // 1. Sticky Navigation on Scroll
@@ -400,7 +403,83 @@ function animateScore(elem, start, end, duration) {
   window.requestAnimationFrame(step);
 }
 
-// 12. Deep Dive: AI Neural Pipeline Simulation
+// 12. Kinetic Animated Hero Headline Rotator
+function initHeroHeadlineRotator() {
+  const container = document.getElementById('heroRotatorWrap');
+  if (!container) return;
+
+  const words = container.querySelectorAll('.hero-rotator-text');
+  if (words.length <= 1) return;
+
+  let currentIndex = 0;
+
+  setInterval(() => {
+    const currentWord = words[currentIndex];
+    currentWord.classList.remove('active');
+    currentWord.classList.add('exit');
+
+    setTimeout(() => {
+      currentWord.classList.remove('exit');
+    }, 600);
+
+    currentIndex = (currentIndex + 1) % words.length;
+    const nextWord = words[currentIndex];
+    nextWord.classList.add('active');
+  }, 2800);
+}
+
+// Interactive Spotlight Hover Effect on Cards
+function initCardSpotlightHover() {
+  const cards = document.querySelectorAll('.bento-card, .pricing-card, .float-card-saves, .float-card-split');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+}
+
+// Number Count-up on scroll
+function initCountersOnScroll() {
+  const animatedElements = document.querySelectorAll('[data-count-target]');
+  if (!animatedElements.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseFloat(el.getAttribute('data-count-target'));
+        const prefix = el.getAttribute('data-count-prefix') || '';
+        const suffix = el.getAttribute('data-count-suffix') || '';
+        const decimals = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
+        animateNumericValue(el, 0, target, 1200, prefix, suffix, decimals);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  animatedElements.forEach(el => observer.observe(el));
+}
+
+function animateNumericValue(elem, start, end, duration, prefix = '', suffix = '', decimals = 0) {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const val = (easeOut * (end - start) + start).toFixed(decimals);
+    elem.innerText = `${prefix}${parseFloat(val).toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}${suffix}`;
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+
+// 13. Deep Dive: AI Neural Pipeline Simulation
 let pipelineActiveIdx = 2;
 
 function initAiPipelineSimulation() {
@@ -410,7 +489,7 @@ function initAiPipelineSimulation() {
   setInterval(() => {
     pipelineActiveIdx = (pipelineActiveIdx + 1) % 4;
     setPipelineActive(pipelineActiveIdx);
-  }, 4000);
+  }, 3200);
 }
 
 window.setPipelineActive = function(index) {
@@ -431,6 +510,19 @@ window.setPipelineActive = function(index) {
       step.querySelector('.step-check').innerHTML = '○';
     }
   });
+
+  // Highlight step 3 when reached
+  if (index === 3) {
+    setTimeout(() => {
+      if (pipelineActiveIdx === 3) {
+        const lastStep = steps[3];
+        if (lastStep) {
+          lastStep.className = 'pipeline-step completed pulse-glow';
+          lastStep.querySelector('.step-check').innerHTML = '✓';
+        }
+      }
+    }, 1800);
+  }
 };
 
 // 13. Deep Dive: Apply Recommendation

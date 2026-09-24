@@ -12,7 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=7">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%23111827'/><path d='M9 9h14M9 16h10' stroke='%2322c55e' stroke-width='3' stroke-linecap='round'/><path d='M9 9v14' stroke='%23ffffff' stroke-width='3' stroke-linecap='round'/><circle cx='23' cy='23' r='2.5' fill='%2322c55e'/></svg>">
 </head>
@@ -64,11 +64,25 @@
 
         <!-- ── LEFT COLUMN ── -->
         <div class="hero-clean-left">
+          <div class="hero-live-badge">
+            <span class="live-pulse-beacon"></span>
+            <span class="live-badge-text">AI Financial Assistant</span>
+            <span class="live-badge-tag">v2.4 Active</span>
+          </div>
           <h1 class="hero-clean-title">
-            <span class="title-invest">Invest</span>
-            <span class="title-intelligently">Intelligently,</span><br class="desktop-br">
-            <span class="title-live">Live</span>
-            <span class="title-independently">Independently</span>
+            <span class="title-block-line">
+              <span class="title-invest">Invest</span>
+              <span class="hero-rotator-wrap" id="heroRotatorWrap">
+                <span class="hero-rotator-text active">Intelligently,</span>
+                <span class="hero-rotator-text">Effortlessly,</span>
+                <span class="hero-rotator-text">Confidently,</span>
+                <span class="hero-rotator-text">Predictably,</span>
+              </span>
+            </span>
+            <span class="title-block-line">
+              <span class="title-live">Live</span>
+              <span class="title-independently text-shimmer-live">Independently</span>
+            </span>
           </h1>
           <p class="hero-clean-desc">
             Your all-in-one solution to smarter money management. Track spending, set goals, and make informed financial decisions with clarity and ease.
@@ -86,6 +100,9 @@
         <!-- ── RIGHT COLUMN: Upright Phone Mockup + Overlapping Cards ── -->
         <div class="hero-clean-right">
           <div class="phone-showcase-stage">
+            <!-- Dynamic Ambient Glow Aura -->
+            <div class="hero-ambient-glow" aria-hidden="true"></div>
+            <div class="hero-glow-particles" aria-hidden="true"></div>
 
             <!-- Floating Card 1: Top-Right "On Saves" -->
             <div class="float-card-saves float-anim" id="floatCardSaves">
@@ -93,7 +110,7 @@
                 <span class="saves-dot"></span>
                 <span class="saves-label">On Saves</span>
               </div>
-              <div class="saves-amount">$ 10,400.22</div>
+              <div class="saves-amount" data-count-target="10400.22" data-count-prefix="$ " data-count-decimals="2">$ 10,400.22</div>
             </div>
 
             <!-- Upright Modern Smartphone Mockup -->
@@ -276,6 +293,22 @@
           </svg>
         </div>
       </div>
+
+      <!-- Live Fintech Telemetry Ticker -->
+      <div class="fintech-live-ticker-wrap">
+        <div class="fintech-live-ticker-track">
+          <div class="ticker-item"><span class="ticker-dot green"></span> <strong>12ms</strong> Real-Time Categorization</div>
+          <div class="ticker-item"><span class="ticker-icon">🔒</span> <strong>SOC2 Type II</strong> & 256-Bit Bank Encryption</div>
+          <div class="ticker-item"><span class="ticker-icon">💡</span> <strong>$4.28M+</strong> Recurring Subscriptions Saved</div>
+          <div class="ticker-item"><span class="ticker-icon">📈</span> <strong>+18.4%</strong> Average Wealth Growth Rate</div>
+          <div class="ticker-item"><span class="ticker-icon">⚡</span> <strong>Automated</strong> Daily Cashflow Balancing</div>
+          <div class="ticker-item"><span class="ticker-dot green"></span> <strong>12ms</strong> Real-Time Categorization</div>
+          <div class="ticker-item"><span class="ticker-icon">🔒</span> <strong>SOC2 Type II</strong> & 256-Bit Bank Encryption</div>
+          <div class="ticker-item"><span class="ticker-icon">💡</span> <strong>$4.28M+</strong> Recurring Subscriptions Saved</div>
+          <div class="ticker-item"><span class="ticker-icon">📈</span> <strong>+18.4%</strong> Average Wealth Growth Rate</div>
+          <div class="ticker-item"><span class="ticker-icon">⚡</span> <strong>Automated</strong> Daily Cashflow Balancing</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -284,7 +317,12 @@
   <section class="features-section" id="features">
     <div class="section-container">
       <div class="section-header-center">
-        <h2 class="section-title">Everything your<br>money’s been missing</h2>
+        <div class="live-pill-badge">
+          <span class="live-beacon"></span>
+          <span class="live-pill-text">Autonomous Financial Engine</span>
+          <span class="live-pill-chip">v2.4 Active</span>
+        </div>
+        <h2 class="section-title">Everything your<br><span class="heading-motion-highlight">money’s been missing</span></h2>
         <p class="section-subtitle">
           Finley watches your accounts around the clock, turning everyday transactions into clear, personalized moves
           toward your goals.
@@ -306,7 +344,7 @@
               <span class="p-badge-subtle" id="spendFilterBadge">This Month</span>
             </div>
             <div class="preview-figure-row">
-              <span class="p-figure" id="bentoSpendTotal">$3,420</span>
+              <span class="p-figure" id="bentoSpendTotal" data-count-target="3420" data-count-prefix="$">$3,420</span>
               <span class="p-trend-pill positive" id="bentoSpendTrend">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -677,7 +715,7 @@
 
         <!-- Copy Column -->
         <div class="deep-dive-content">
-          <h2 class="deep-dive-title">AI Analyzes Your Finances</h2>
+          <h2 class="deep-dive-title">AI <span class="heading-motion-highlight">Analyzes Your Finances</span></h2>
           <p class="deep-dive-description">
             Finley automatically categorizes every transaction, detects spending patterns, and turns your financial data
             into actionable insights.
@@ -716,7 +754,7 @@
       <div class="deep-dive-grid reverse">
         <!-- Copy Column -->
         <div class="deep-dive-content">
-          <h2 class="deep-dive-title">Get personalized insights</h2>
+          <h2 class="deep-dive-title">Get <span class="heading-motion-highlight">personalized insights</span></h2>
           <p class="deep-dive-description">
             Actionable financial advice tailored specifically to your habits. Discover opportunities to save more, spend
             smarter, and hit your goals faster.
@@ -952,7 +990,7 @@
       <div class="banner-card hover-lift">
         <div class="banner-decor-glow"></div>
         <div class="banner-inner">
-          <h2 class="banner-title">Ready to take control of<br>your finances?</h2>
+          <h2 class="banner-title">Ready to take control of<br><span class="heading-motion-highlight banner-highlight">your finances?</span></h2>
           <p class="banner-sub">
             Start today and find out how easy it is to go from financial guesswork<br>to clarity. An assistant that
             works around the clock for you.
