@@ -3404,71 +3404,83 @@ button {
     margin-bottom: 2px;
   }
 
-  /* Deep Dive Storytelling */
+  /* Deep Dive Storytelling - Spaced comfortably away from mobile edges */
   .deep-dive-section {
-    padding: 42px 0;
+    padding: 48px 0;
+  }
+
+  .deep-dive-section .section-container {
+    padding: 0 28px;
   }
 
   .deep-dive-grid,
   .deep-dive-grid.reverse {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 32px;
     text-align: left;
   }
 
+  .deep-dive-content {
+    padding: 0 4px;
+  }
+
   .deep-dive-title {
-    font-size: clamp(1.75rem, 5.8vw, 2.15rem);
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
     line-height: 1.2;
     letter-spacing: -0.03em;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
   }
 
   .deep-dive-description {
-    font-size: 0.92rem;
-    line-height: 1.52;
+    font-size: 0.94rem;
+    line-height: 1.6;
     color: var(--text-muted);
-    margin-bottom: 16px;
+    margin-bottom: 22px;
   }
 
   .feature-checklist {
-    gap: 10px;
+    gap: 13px;
   }
 
   .feature-checklist li {
-    font-size: 0.88rem;
-    line-height: 1.42;
-    gap: 9px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    gap: 11px;
   }
 
   .deep-dive-widget-card {
-    padding: 16px 14px;
-    border-radius: 18px;
+    padding: 22px 18px;
+    border-radius: 20px;
+    background: #FFFFFF;
+    border: 1px solid #EEF2F6;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
   }
 
   /* Deep Dive 1: Pipeline Steps */
   .pipeline-steps {
-    gap: 7px;
+    gap: 8px;
   }
 
   .pipeline-step {
-    padding: 10px 11px;
-    border-radius: 12px;
-    gap: 10px;
+    padding: 12px 13px;
+    border-radius: 14px;
+    gap: 12px;
   }
 
   .step-check {
-    width: 22px;
-    height: 22px;
-    font-size: 0.74rem;
+    width: 24px;
+    height: 24px;
+    font-size: 0.78rem;
   }
 
   .step-name {
-    font-size: 0.82rem;
+    font-size: 0.86rem;
     font-weight: 700;
   }
 
   .step-detail {
-    font-size: 0.7rem;
+    font-size: 0.74rem;
+    margin-top: 2px;
   }
 
   /* Deep Dive 2: Opportunity Card */
@@ -3477,49 +3489,49 @@ button {
   }
 
   .opp-headline {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 800;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .opp-sub {
-    font-size: 0.82rem;
-    line-height: 1.45;
-    margin-bottom: 14px;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
   }
 
   .opp-graph-card {
-    padding: 14px 10px 6px;
-    border-radius: 12px;
+    padding: 16px 12px 8px;
+    border-radius: 14px;
     position: relative;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
 
   .opp-milestone-marker {
-    top: 8px;
-    right: 10px;
-    font-size: 0.7rem;
+    top: 10px;
+    right: 12px;
+    font-size: 0.72rem;
     font-weight: 800;
-    padding: 2px 8px;
+    padding: 3px 9px;
   }
 
   .opp-action-row {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     align-items: stretch;
     text-align: center;
   }
 
   .opp-action-row .btn {
     width: 100%;
-    padding: 11px 18px;
-    font-size: 0.88rem;
+    padding: 12px 20px;
+    font-size: 0.9rem;
     font-weight: 700;
   }
 
   .opp-eta {
-    font-size: 0.74rem;
+    font-size: 0.76rem;
     color: #94A3B8;
     margin: 0 auto;
   }
@@ -3734,6 +3746,10 @@ button {
   .hero-clean-container,
   .section-container {
     padding: 0 14px;
+  }
+
+  .deep-dive-section .section-container {
+    padding: 0 24px;
   }
 
   .nav-container {
