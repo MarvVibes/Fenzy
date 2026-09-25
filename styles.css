@@ -70,6 +70,43 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   position: relative;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Living Ambient Background Mesh */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(34, 197, 94, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 88% 55%, rgba(16, 185, 129, 0.035) 0%, transparent 50%),
+    radial-gradient(circle at 45% 85%, rgba(6, 182, 212, 0.03) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: 0;
+  animation: bgMeshDrift 24s ease-in-out infinite alternate;
+}
+
+@keyframes bgMeshDrift {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.04) translate(-1%, 1.2%);
+  }
+  100% {
+    transform: scale(1) translate(1%, -1%);
+  }
+}
+
+/* Ensure all major sections sit above the ambient mesh */
+header, section, footer, .modal-backdrop {
+  position: relative;
+  z-index: 1;
 }
 
 /* Typography */
@@ -1234,15 +1271,45 @@ button {
   background: #FFFFFF;
   border: 1px solid var(--border-card);
   border-radius: var(--radius-xl);
-  padding: 22px 24px;
+  padding: 24px 26px;
   box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(34, 197, 94, 0.3);
+  box-shadow: 0 20px 42px -10px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(34, 197, 94, 0.16);
+}
+
+/* Subtle Cursor Spotlight Gradient inside Card */
+.bento-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle 320px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(34, 197, 94, 0.05), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.bento-card:hover::before {
+  opacity: 1;
 }
 
 .card-content-top {
   margin-bottom: 18px;
+  position: relative;
+  z-index: 2;
 }
 
 .bento-title {
@@ -1264,6 +1331,15 @@ button {
   border: 1px solid #F1F5F9;
   border-radius: var(--radius-lg);
   padding: 16px 18px;
+  position: relative;
+  z-index: 2;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.bento-card:hover .bento-preview-box {
+  background: #F8FAFC;
+  border-color: #E2E8F0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
 
 /* Feature 1 UI */
@@ -1375,7 +1451,30 @@ button {
 }
 
 .fill-green {
-  background: #22C55E;
+  background: linear-gradient(90deg, #16A34A 0%, #22C55E 60%, #4ADE80 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.fill-green::after,
+.goal-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: barShimmerSweep 4s ease-in-out infinite;
+}
+
+@keyframes barShimmerSweep {
+  0% {
+    left: -100%;
+  }
+  35%, 100% {
+    left: 100%;
+  }
 }
 
 .fill-mint {
@@ -3172,10 +3271,15 @@ button {
   /* Bento Grid / Features */
   .features-section {
     padding: 42px 0 54px;
+    overflow: hidden;
   }
 
   .section-container {
-    padding: 0 16px;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .section-title {
@@ -3195,13 +3299,21 @@ button {
   }
 
   .bento-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 18px;
+    box-sizing: border-box !important;
   }
 
   .bento-card {
-    padding: 24px 20px;
-    border-radius: 22px;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    padding: 20px 16px !important;
+    border-radius: 20px;
     border: 1px solid var(--border-light);
     box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
     background: #FFFFFF;
@@ -3223,8 +3335,13 @@ button {
   }
 
   .bento-preview-box {
-    padding: 20px 18px;
-    border-radius: 18px;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    padding: 15px 13px !important;
+    border-radius: 16px;
     background: #F8FAFC;
     border: 1px solid #EEF2F6;
   }
@@ -3520,8 +3637,13 @@ button {
 
   /* Bento Card 4: Goal Tracker */
   .goal-card {
-    padding: 20px 18px;
-    border-radius: 18px;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    padding: 16px 14px !important;
+    border-radius: 16px;
     background: #FFFFFF;
     border: 1px solid #EEF2F6;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
@@ -4092,14 +4214,20 @@ button {
   .hero-clean-container,
   .section-container,
   .deep-dive-section .section-container,
+  .pricing-section .section-container,
+  .banner-cta-section .section-container,
   .footer-container {
-    padding: 0 20px;
-    box-sizing: border-box;
-    max-width: 100%;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .nav-container {
-    padding: 0 16px;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
   }
 
   .brand-name {
@@ -4225,18 +4353,45 @@ button {
     max-height: 18px;
   }
 
+  .bento-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
   .bento-card {
-    padding: 20px 16px;
+    padding: 20px 16px !important;
     border-radius: 20px;
-    width: 100%;
-    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
   .bento-preview-box {
-    padding: 16px 14px;
+    padding: 14px 12px !important;
     border-radius: 16px;
-    width: 100%;
-    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .goal-card {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    padding: 14px 12px !important;
+  }
+
+  .btn-deposit-boost {
+    padding: 10px 14px !important;
+    font-size: 0.82rem !important;
   }
 
   .spending-amount-wrap .p-figure,
@@ -4265,10 +4420,11 @@ button {
   }
 
   .banner-card {
-    padding: 32px 18px;
+    padding: 30px 16px !important;
     border-radius: 20px;
-    width: 100%;
-    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .banner-title {
@@ -4277,6 +4433,13 @@ button {
 
   .banner-sub {
     font-size: 0.86rem;
+  }
+
+  .pricing-card {
+    padding: 22px 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .footer-top-row {
@@ -4297,8 +4460,20 @@ button {
   .hero-clean-container,
   .section-container,
   .deep-dive-section .section-container,
+  .pricing-section .section-container,
+  .banner-cta-section .section-container,
   .footer-container {
-    padding: 0 16px;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .nav-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
   }
 
   .hero-clean-ctas {
