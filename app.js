@@ -4,11 +4,13 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.classList.add('js-reveal');
   initNavbarScroll();
   initMobileMenu();
   initHeroParallax();
   initHeroHeadlineRotator();
   initCardSpotlightHover();
+  initCardEntranceAnimations();
   initAiPipelineSimulation();
   initCreditScoreCounter();
   initCountersOnScroll();
@@ -439,6 +441,40 @@ function initCardSpotlightHover() {
       card.style.setProperty('--mouse-x', `${x}px`);
       card.style.setProperty('--mouse-y', `${y}px`);
     });
+  });
+}
+
+// 13. Smooth Staggered Card Entrance Animations on Scroll
+function initCardEntranceAnimations() {
+  const entranceCards = document.querySelectorAll('.card-entrance');
+  if (!entranceCards.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    entranceCards.forEach(card => card.classList.add('is-entered'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-entered');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -40px 0px',
+    threshold: 0.1
+  });
+
+  entranceCards.forEach(card => {
+    const rect = card.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 40 && rect.bottom > 0) {
+      // If already in initial viewport, enter immediately
+      card.classList.add('is-entered');
+    } else {
+      observer.observe(card);
+    }
   });
 }
 
